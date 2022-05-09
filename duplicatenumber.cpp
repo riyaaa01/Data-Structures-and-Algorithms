@@ -4,7 +4,7 @@ using namespace std;
 
 //first approach
 
-int findDuplicate(int *nums, int n){
+int findDuplicate1(int *nums, int n){
     sort(nums, nums+n);
     for(int i=0; i<n; i++){
         if(nums[i]== nums[i-1]){
@@ -16,7 +16,7 @@ int findDuplicate(int *nums, int n){
 }
 
 //2nd approach
-int findDuplicate(int *nums) {
+int findDuplicate2(int *nums) {
 
     unordered_set<int> seen;
         for (auto &num : nums  ) {
@@ -28,7 +28,7 @@ int findDuplicate(int *nums) {
 
 }
 //3rd approach
-int findDuplicate(int *nums) {
+int findDuplicate3(int *nums) {
         
         for (int i = 0; i <n ; i++) {
             int index = nums[i] % n;
@@ -61,7 +61,7 @@ int main()
         cin>>nums[i];
     }
 
-   int ans= findDuplicate(nums);
+   int ans= findDuplicate3(nums);
     
     cout<<ans;
 
