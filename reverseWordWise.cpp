@@ -4,29 +4,35 @@
 #include<algorithm>
 using namespace std;
 
-void reverseWords(string s) {
-
-    if(s.size() == 0) return;
-    stack<string> stack;
-    string result;
-    for(int i=0; i<s.size(); i++) {
-        string word;
-        if(s[i]==' ') continue; //skip spaces
-        while(i<s.size() && s[i]!=' ' ) { //store continuous letters into word
-            word += s[i]; i++;
+    string reverse(string temp){
+        int s =0;
+        int e = temp.length() -1;
+        
+        while(s<=e){
+            swap(temp[s], temp[e]);
+            s++;
+            e--;
         }
-        stack.push(word); //push word to the stack
+        
+        return temp;
     }
-    while(!stack.empty()) {
-        result += stack.top(); stack.pop();
-        if(!stack.empty()) result += " ";
-    }
-    cout<<result;
-}
 
+    string reverseWords(string s) {
+        
+        string temp;
+        for(int i=0; i<s.length(); i++){
+            temp.push_back(s[i]);
+            if(s[i] == ' '){
+                reverse(temp);
+            }
+        }
+        
+        return temp;
+    }
 int main() 
 {
     string str;
     getline(cin,str);
-    reverseWords(str);
+    string ans = reverseWords(str);
+    cout<<ans;
 }
