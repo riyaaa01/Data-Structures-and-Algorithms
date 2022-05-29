@@ -1,71 +1,28 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
-class Node
-{
-public:
-    int data;
-    Node *next;
-    Node(int data)
-    {
-        this->data = data;
-        this->next = NULL;
+
+void removeConsecutiveDuplicates(char input[]) {
+    // Write your code here
+    if (input[0] == '\0')
+        return;
+
+    if (input[0] == input[1]) {
+         
+        int i = 0;
+        while (input[i] != '\0') {
+            input[i] = input[i + 1];
+            i++;
+        }
+        removeConsecutiveDuplicates(input);
     }
-};
-
-Node* deleteDuplicates(Node* head) {
-        
-        Node *temp =head;
-        while(temp!=NULL && temp->next!=NULL){
-            if(temp->data == temp->next->data){
-                temp->next= temp->next->next;
-            }
-        else
-        {
-            temp = temp->next;
-        }
-            
-        }
-        
-        return head;
-        
+ 
+    removeConsecutiveDuplicates(input+1);
 }
-
-Node * takeinput()
-{
-	int data;
-	cin >> data;
-	Node *head = NULL, *tail = NULL;
-	while (data != -1)
-	{
-		Node *newnode = new Node(data);
-		if (head == NULL)
-		{
-			head = newnode;
-			tail = newnode;
-		}
-		else
-		{
-			tail->next = newnode;
-			tail = newnode;
-		}
-		cin >> data;
-	}
-	return head;
-}
-void print(Node *head)
-{
-	Node *temp = head;
-	while (temp != NULL)
-	{
-		cout << temp->data << " ";
-		temp = temp->next;
-	}
-	cout << endl;
-}
-int main(){
-
-    Node *head = takeinput();
-	Node *fhead = deleteDuplicates(head);
-    print(fhead);
-    return 0;
+int main() {
+    int size = 1e6;
+    char str[size];
+    cin >> str;
+    removeConsecutiveDuplicates(str);
+    cout << str;
 }
